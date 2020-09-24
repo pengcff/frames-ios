@@ -11,7 +11,7 @@ import Foundation
 import CoreTelephony
 #endif
     
-public final class PhoneNumberKit: NSObject {
+public final class CKOPhoneNumberKit: NSObject {
     
     // Manager objects
     let metadataManager = MetadataManager()
@@ -33,7 +33,7 @@ public final class PhoneNumberKit: NSObject {
     ///   - region: ISO 639 compliant region code.
     ///   - ignoreType: Avoids number type checking for faster performance.
     /// - Returns: PhoneNumber object.
-    public func parse(_ numberString: String, withRegion region: String = PhoneNumberKit.defaultRegionCode(), ignoreType: Bool = false) throws -> PhoneNumber {
+    public func parse(_ numberString: String, withRegion region: String = CKOPhoneNumberKit.defaultRegionCode(), ignoreType: Bool = false) throws -> PhoneNumber {
 
         var numberStringWithPlus = numberString
 
@@ -55,7 +55,7 @@ public final class PhoneNumberKit: NSObject {
     /// - parameter ignoreType:   Avoids number type checking for faster performance.
     ///
     /// - returns: array of PhoneNumber objects.
-    public func parse(_ numberStrings: [String], withRegion region: String = PhoneNumberKit.defaultRegionCode(), ignoreType: Bool = false, shouldReturnFailedEmptyNumbers: Bool = false) -> [PhoneNumber] {
+    public func parse(_ numberStrings: [String], withRegion region: String = CKOPhoneNumberKit.defaultRegionCode(), ignoreType: Bool = false, shouldReturnFailedEmptyNumbers: Bool = false) -> [PhoneNumber] {
         return parseManager.parseMultiple(numberStrings, withRegion: region, ignoreType: ignoreType, shouldReturnFailedEmptyNumbers: shouldReturnFailedEmptyNumbers)
     }
     

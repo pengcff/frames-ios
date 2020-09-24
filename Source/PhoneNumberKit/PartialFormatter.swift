@@ -11,17 +11,17 @@ import Foundation
 /// Partial formatter
 public final class PartialFormatter {
     
-    private let phoneNumberKit: PhoneNumberKit
+    private let phoneNumberKit: CKOPhoneNumberKit
 
     weak var metadataManager: MetadataManager?
     weak var parser: PhoneNumberParser?
     weak var regexManager: RegexManager?
 
-    public convenience init(phoneNumberKit: PhoneNumberKit = PhoneNumberKit(), defaultRegion: String = PhoneNumberKit.defaultRegionCode(), withPrefix: Bool = true) {
+    public convenience init(phoneNumberKit: CKOPhoneNumberKit = CKOPhoneNumberKit(), defaultRegion: String = CKOPhoneNumberKit.defaultRegionCode(), withPrefix: Bool = true) {
         self.init(phoneNumberKit: phoneNumberKit, regexManager: phoneNumberKit.regexManager, metadataManager: phoneNumberKit.metadataManager, parser: phoneNumberKit.parseManager.parser, defaultRegion: defaultRegion, withPrefix: withPrefix)
     }
     
-    init(phoneNumberKit: PhoneNumberKit, regexManager: RegexManager, metadataManager: MetadataManager, parser: PhoneNumberParser, defaultRegion: String, withPrefix: Bool = true) {
+    init(phoneNumberKit: CKOPhoneNumberKit, regexManager: RegexManager, metadataManager: MetadataManager, parser: PhoneNumberParser, defaultRegion: String, withPrefix: Bool = true) {
         self.phoneNumberKit = phoneNumberKit
         self.regexManager = regexManager
         self.metadataManager = metadataManager
