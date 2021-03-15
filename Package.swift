@@ -1,15 +1,18 @@
-// swift-tools-version:4.1
+// swift-tools-version:5.1
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "FramesIos",
+    platforms: [
+        .iOS(.v10)
+    ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
             name: "FramesIos",
-            targets: ["FramesIos"]),
+            targets: ["FramesIos"])
         ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -22,11 +25,12 @@ let package = Package(
        .target(
            name: "FramesIos",
            dependencies: ["Alamofire"],
-           path: "Source"),
+           path: "Source")
 //        .testTarget(
 //            name: "FramesIosTests",
 //            dependencies: ["FramesIos"],
 //            path: "Tests")
-        ]
+    ],
+    swiftLanguageVersions: [.v4]
 )
 
