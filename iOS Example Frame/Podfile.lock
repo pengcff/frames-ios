@@ -14,7 +14,7 @@ PODS:
     - PhoneNumberKit/PhoneNumberKitCore
 
 DEPENDENCIES:
-  - "CheckoutEventLoggerKit (from `git@github.com:checkout/checkout-event-logger-ios-framework.git`, branch `feature/PIMOB-812-ct-checks`)"
+  - CheckoutEventLoggerKit (from `https://github.com/checkout/checkout-event-logger-ios-framework.git`, branch `feature/PIMOB-812-ct-checks`)
   - Frames (from `../`)
   - Frames/Tests (from `../`)
 
@@ -25,20 +25,20 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   CheckoutEventLoggerKit:
     :branch: feature/PIMOB-812-ct-checks
-    :git: "git@github.com:checkout/checkout-event-logger-ios-framework.git"
+    :git: https://github.com/checkout/checkout-event-logger-ios-framework.git
   Frames:
     :path: "../"
 
 CHECKOUT OPTIONS:
   CheckoutEventLoggerKit:
     :commit: 625c211ac7a079a63227203d420167c5f5ad49b7
-    :git: "git@github.com:checkout/checkout-event-logger-ios-framework.git"
+    :git: https://github.com/checkout/checkout-event-logger-ios-framework.git
 
 SPEC CHECKSUMS:
   CheckoutEventLoggerKit: 927992ea8c36579ae245e24f097f1a06d22acb70
   Frames: 3dd5ac18f6add02fb4a41afcafde52663c8434b8
   PhoneNumberKit: 4ce83273551c4d2ae10b7361162f4283dd02835f
 
-PODFILE CHECKSUM: 256bd0be16a749398a4d038f80317bf3fc0ee21d
+PODFILE CHECKSUM: abad875d03f602b52ef07c63f78583110211aaaf
 
 COCOAPODS: 1.11.0
