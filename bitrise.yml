@@ -14,15 +14,19 @@ workflows:
         inputs:
         - carthage_options: $CARTHAGE_XCFRAMEWORK
         - github_access_token: $access_token
-    - xcode-test@4.1:
+    - xcode-test@2:
         inputs:
         - project_path: $BITRISE_PROJECT_PATH_CARTHAGE
-        - destination: 'platform=iOS Simulator,name=iPhone 13,OS=latest'
+        - simulator_device: iPhone 11
+        - simulator_os_version: '15.2'
         - scheme: $BITRISE_SCHEME_APP
     - deploy-to-bitrise-io@1: {}
     - cache-push@2:
         inputs:
         - cache_paths: $CARTHAGE_FOLDER
+    meta:
+      bitrise.io:
+        stack: osx-xcode-13.2.x
   build-pods-example:
     steps:
     - cocoapods-install@1:
@@ -59,8 +63,8 @@ workflows:
         title: Do anything with Script step
         inputs:
         - content: |
-            # run carthage update command.
-            carthage update --use-xcframeworks --platform iOS
+            # run carthage update command. 
+            carthage update --use-xcframeworks --platform iOS      
     - certificate-and-profile-installer@1: {}
     - xcode-test@2:
         inputs:
@@ -68,6 +72,9 @@ workflows:
         - scheme: $BITRISE_SCHEME_TESTS
     - deploy-to-bitrise-io@1: {}
     - cache-push@2: {}
+    meta:
+      bitrise.io:
+        stack: osx-xcode-13.2.x
   build-sdk-pods:
     steps:
     - activate-ssh-key@4:
@@ -75,7 +82,7 @@ workflows:
     - git-clone@4: {}
     - cache-pull@2: {}
     - certificate-and-profile-installer@1: {}
-    - cocoapods-install@2.2:
+    - cocoapods-install@1:
         inputs:
         - podfile_path: $BITRISE_POD_FILE_PATH
     - xcode-test@2:
@@ -104,6 +111,9 @@ workflows:
     - slack@3:
         inputs:
         - webhook_url: $FRAMES_IOS_BUILDS_CHANNEL
+    meta:
+      bitrise.io:
+        stack: osx-xcode-13.2.x
   build-spm-example:
     steps:
     - xcode-test@2:
@@ -112,6 +122,9 @@ workflows:
         - scheme: $BITRISE_SCHEME_APP
     - deploy-to-bitrise-io@1: {}
     - cache-push@2: {}
+    meta:
+      bitrise.io:
+        stack: osx-xcode-13.2.x
   cocoapods-release: {}
   deploy:
     steps:
@@ -145,6 +158,9 @@ workflows:
     - slack@3:
         inputs:
         - webhook_url: $FRAMES_IOS_BUILDS_CHANNEL
+    meta:
+      bitrise.io:
+        stack: osx-xcode-13.2.x
   pr-checks:
     after_run:
     - set-up
@@ -152,6 +168,10 @@ workflows:
     - build-pods-example
     - build-spm-example
     - send-slack-message
+    meta:
+      bitrise.io:
+        stack: osx-xcode-13.2.x
+        machine_type_id: g2.4core
   release-pod-frames:
     steps:
     - script@1:
@@ -207,5 +227,5 @@ app:
     BITRISE_SCHEME_COCOAPODS: iOS Example Frame
 meta:
   bitrise.io:
-    stack: osx-xcode-13.3.x
+    stack: osx-xcode-13.2.x
     machine_type_id: g2.4core
