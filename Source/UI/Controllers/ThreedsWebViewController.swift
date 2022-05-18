@@ -104,21 +104,17 @@ extension ThreedsWebViewController: WKNavigationDelegate {
         if let successUrl = successUrl,
            urlHelper.urlsMatch(redirectUrl: redirectUrl, matchingUrl: successUrl) {
             // success url, dismissing the page with the payment token
-
-            self.dismiss(animated: true) { [urlHelper, delegate] in
-                let token = urlHelper.extractToken(from: redirectUrl)
-                delegate?.threeDSWebViewControllerAuthenticationDidSucceed(self, token: token)
-                delegate?.onSuccess3D()
-            }
+            
+            let token = urlHelper.extractToken(from: redirectUrl)
+            delegate?.threeDSWebViewControllerAuthenticationDidSucceed(self, token: token)
+            delegate?.onSuccess3D()
 
             return true
         } else if let failUrl = failUrl,
                   urlHelper.urlsMatch(redirectUrl: redirectUrl, matchingUrl: failUrl) {
             // fail url, dismissing the page
-            self.dismiss(animated: true) { [delegate] in
-                delegate?.threeDSWebViewControllerAuthenticationDidFail(self)
-                delegate?.onFailure3D()
-            }
+            delegate?.threeDSWebViewControllerAuthenticationDidFail(self)
+            delegate?.onFailure3D()
 
             return true
         }
